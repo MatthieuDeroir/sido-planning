@@ -174,7 +174,15 @@ function renderTeamView(){
  const target=document.getElementById('team-view');if(!target)return;
  const chosen=sessions.filter(s=>Object.hasOwn(assignments,s.id)).sort((a,b)=>a.startDate.localeCompare(b.startDate));
  const mine=chosen.filter(s=>(assignments[s.id]||[]).includes(me));
- if(personal)personal.querySelector('.personal-quick-list').innerHTML=me?(mine.length?mine.map(s=>'<div class="personal-quick-item"><strong>'+esc(s.displayName)+'</strong><small>'+label(s.startDate)+' · '+time(s.startDate)+'–'+time(s.endDate)+' · '+esc(s.location||'Salle à préciser')+'</small></div>').join(''):'Aucune conférence pour '+esc(me)+'.'):'Choisis ton prénom pour voir tes conférences ici.';
+ if(personal)personal.querySelector('.personal-quick-list').innerHTML=me?(mine.length?mine.map((s,i)=>{
+ const previous=mine[i-1],room=String(s.location||'').trim();
+ const sameDay=previous&&key(previous.startDate)===key(s.startDate);
+ const overlap=sameDay&&clash(previous,s);
+ const change=sameDay&&!overlap&&previous.location&&room&&String(previous.location).trim().toLowerCase()!==room.toLowerCase();
+ const heading=!sameDay?'<h3 class="personal-date">'+label(s.startDate)+'</h3>':'';
+ const note=overlap?'<div class="room-change">Choix simultanés · à confirmer</div>':change?'<div class="room-change">↗ Changer de salle : '+esc(previous.location)+' → '+esc(room)+'</div>':'';
+ return heading+note+'<div class="personal-quick-item"><div class="personal-hours">'+time(s.startDate)+'–'+time(s.endDate)+'</div><strong>'+esc(s.displayName)+'</strong><small>'+esc(room||'Salle à préciser')+'</small></div>';
+ }).join(''):'Aucune conférence pour '+esc(me)+'.'):'Choisis ton prénom pour voir tes conférences ici.';
  if(!chosen.length){target.innerHTML='<div class="team-empty">Le planning d’équipe se construira ici après les premières sélections.</div>';return}
  const days={};chosen.forEach(s=>(days[key(s.startDate)]??=[]).push(s));
  target.innerHTML='<div class="team-view-title"><h2>Planning construit</h2><small>Une colonne par personne · les choix simultanés restent visibles</small></div>'+

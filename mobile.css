@@ -1,4 +1,7 @@
 .phone-header{display:none}
+.personal-hours{font-size:23px;font-weight:800;color:#18262d;line-height:1.2;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.personal-date{font-size:16px;margin:12px 0 4px}
+.room-change{font-size:12px;color:#795016;background:#fff2d9;padding:6px 10px;border-radius:7px}
 @media screen and (max-width:900px){
 body{padding-bottom:calc(90px + env(safe-area-inset-bottom));background:#f4f6f8}
 .shell{padding:14px;max-width:100%;overflow-wrap:anywhere}
@@ -15,9 +18,9 @@ button,.btn,.person,.chip{min-height:44px;touch-action:manipulation}.picker{flex
 .bottom-nav{position:fixed;inset:auto 0 0;z-index:10;display:flex;margin:0;padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:white;border-top:1px solid #dce4e4;gap:8px}
 .bottom-nav a{flex:1;min-height:48px;padding:12px 4px;text-align:center;font-size:13px;border-radius:12px}
 .personal-quick{padding:0;border:0;background:none}.personal-quick h2{font-size:24px;margin:0 0 16px}
-.personal-quick-item{padding:16px;background:white;border-left:4px solid #f2673a;border-radius:12px}
-.personal-quick-item strong{font-size:16px;line-height:1.4}.personal-quick-item small{display:block;font-size:14px;margin:8px 0}
-.personal-quick-item .btn{display:inline-flex;align-items:center;text-decoration:none;margin-top:8px}
+.personal-quick-item{padding:10px 12px;background:white;border-left:4px solid #f2673a;border-radius:10px}
+.personal-quick-item strong{font-size:15px;line-height:1.3}.personal-quick-item small{display:block;font-size:13px;margin:4px 0}
+.personal-quick-item .btn{display:inline-flex;align-items:center;text-decoration:none;margin-top:2px;padding:4px 10px;font-size:12px}
 .team-grid{display:none!important}.mobile-team-list{display:grid!important;gap:10px;padding:12px}
 .mobile-slot>strong{font-size:17px}.mobile-agenda-card{padding:12px;background:#f1f6fa;margin-top:8px;border-radius:10px}
 .mobile-agenda-card strong,.mobile-agenda-card small{display:block}.mobile-agenda-card small{margin-top:8px}
