@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mon planning — SIDO Lyon 2026</title>
+<style>
+.hero{display:none}
+.print-title{display:none}@media print{*{box-shadow:none!important}body{background:#fff;color:#000;font:11pt/1.3 Arial,sans-serif}.shell{padding:0;max-width:none}.hero,.toolbar,.stats,#schedule,.actions>*,p[style]{display:none!important}.layout{display:block;margin:0}.planning{display:block;background:#fff;color:#000;padding:0;position:static}.planning h2{font-size:20pt;border-bottom:2px solid #000;padding-bottom:8px;margin:0}.planning h2 span{font-weight:normal}.sub{color:#000;margin:5px 0 15px}.print-title{display:block}.planlist{display:block;max-height:none;overflow:visible}.planitem{background:#fff;border:0;border-bottom:1px solid #999;border-radius:0;padding:9px 0;break-inside:avoid}.planitem strong{font-size:12pt}.planitem small{color:#000;display:block;margin-top:3px}.remove{display:none!important}.planning .actions{display:none}}
+.picker{display:flex;flex-wrap:wrap;gap:5px;margin-top:13px;padding-top:11px;border-top:1px solid var(--line)}.person{border:1px solid var(--line);border-radius:99px;background:#fff;color:var(--muted);font-size:11px;padding:5px 8px}.person.active{background:#dff4f1;color:#08737b;border-color:#82d2cc;font-weight:800}
+:root{--ink:#18262d;--muted:#708087;--bg:#f5f2ec;--paper:#fffdf9;--orange:#f2673a;--line:#dce4e4}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}.shell{max-width:1440px;margin:auto;padding:24px}.hero{background:var(--ink);color:#fff;border-radius:26px;padding:34px 40px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-100px;top:-190px;background:var(--orange)}.eyebrow{color:#ffb39b;text-transform:uppercase;font-size:12px;font-weight:800;letter-spacing:.15em}.hero h1{font-size:clamp(38px,5vw,68px);line-height:.95;margin:14px 0;max-width:700px}.hero p{color:#d1d8d8;max-width:650px;font-size:17px}.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.meta span{background:#ffffff14;padding:8px 12px;border-radius:99px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;margin-top:22px;align-items:start}.toolbar{position:sticky;top:12px;z-index:4;background:#fffffff2;border-radius:18px;padding:13px;box-shadow:0 12px 35px #1d303515}.search{display:flex;gap:9px}.search input{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 14px}.btn,.chip{border:0;border-radius:10px;padding:10px 13px;font-weight:750;background:#edf1f0;color:var(--ink)}.btn.primary{background:var(--orange);color:#fff}.btn.ghost{background:transparent;border:1px solid var(--line)}.filters{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.chip{border:1px solid var(--line);border-radius:99px;padding:7px 11px;color:var(--muted);background:#fff}.chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}.stats{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin:15px 3px}.day{margin:25px 0}.dayhead{display:flex;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:8px}.dayhead h2{margin:0;font-size:25px}.dayhead small{color:var(--muted)}.slot{display:grid;grid-template-columns:70px 1fr;gap:14px;padding-top:16px}.time{color:var(--orange);font-weight:850;padding-top:6px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:17px}.card.selected{border:2px solid var(--orange);padding:16px;background:#fff9f4}.card.conflict{border-color:#cc4750}.badges{display:flex;gap:6px;flex-wrap:wrap}.badge{font-size:11px;font-weight:800;border-radius:99px;padding:4px 8px;background:#e6f5f5;color:#167681}.badge.type{background:#fff0e9;color:#c24e2e}.card h3{font-size:16px;line-height:1.25;margin:10px 0}.card p{font-size:13px;color:var(--muted);margin:0}.room{display:block;margin-top:9px;font-size:12px;font-weight:750}.cardactions{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:15px}.add{background:var(--ink);color:#fff;border:0;border-radius:9px;padding:8px 11px;font-weight:800}.selected .add{background:var(--orange)}.planning{position:sticky;top:12px;background:var(--ink);color:#fff;border-radius:20px;padding:21px}.planning h2{margin:0;font-size:24px}.sub{color:#b9c8c8;font-size:13px;margin:4px 0 18px}.planlist{display:flex;flex-direction:column;gap:9px;max-height:58vh;overflow:auto}.planitem{background:#ffffff10;border:1px solid #ffffff18;border-radius:12px;padding:11px}.planitem strong{display:block;font-size:13px;line-height:1.25}.planitem small{color:#b9c7c7}.remove{float:right;border:0;background:transparent;color:#ffab8e;font-size:18px}.empty,.loading,.error{border-radius:12px;padding:20px}.empty{border:1px dashed #ffffff40;color:#b9c7c7;font-size:13px}.loading,.error{background:#fff}.error{color:#9b2d36}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}.actions .btn{font-size:12px}@media(max-width:980px){.layout{grid-template-columns:1fr}.planning{position:relative;top:auto;order:-1}.planlist{max-height:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.shell{padding:13px}}@media(max-width:560px){.slot{grid-template-columns:1fr;gap:2px}.hero{padding:27px}.hero h1{font-size:44px}.cards{grid-template-columns:1fr}}
+
+/* Choix du prénom */
+.identity-dialog{border:0;border-radius:18px;padding:30px;width:min(480px,calc(100% - 32px));color:#18262d;background:#fffdf9;box-shadow:0 20px 70px #0004}
+.identity-dialog::backdrop{background:#18262dbb}
+.identity-dialog h2{margin:0 0 8px;font-size:26px}
+.identity-dialog p{margin:0 0 22px;color:#52636c}
+.identity-names{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.identity-names .btn{padding:18px;font-size:18px;cursor:pointer;border:2px solid transparent}
+.identity-names .btn:hover,.identity-names .btn:focus-visible{border-color:#f2673a;background:#fff0e9}
+.identity-change{margin-top:10px;cursor:pointer}
+#print-team{display:none}
+@page{size:A4 landscape;margin:12mm}
+@media print{
+  body{background:white!important;color:#17232a!important;font:10pt/1.35 Arial,sans-serif}
+  body>.shell,body>dialog{display:none!important}
+  #print-team{display:block!important}
+  #print-team h1{font-size:20pt;margin:0 0 4mm;letter-spacing:-.4pt}
+  #print-team .print-meta{font-size:9pt;color:#485760;margin:0 0 4mm}
+  #print-team .print-legend{font-size:9pt;margin:0 0 6mm}
+  #print-team .print-day{break-before:page}
+  #print-team .print-day:first-of-type{break-before:auto}
+  #print-team h2{font-size:14pt;margin:0 0 3mm;padding:2mm 0;border-bottom:2pt solid #263e4c}
+  #print-team table{width:100%;border-collapse:collapse;table-layout:fixed}
+  #print-team thead{display:table-header-group}
+  #print-team tr{break-inside:avoid;page-break-inside:avoid}
+  #print-team th{text-align:left;background:#edf1f3!important;border-bottom:1pt solid #53656f;font-size:9pt;text-transform:uppercase;letter-spacing:.3pt;padding:3mm 2.5mm}
+  #print-team td{vertical-align:top;padding:3mm 2.5mm;border-bottom:.5pt solid #aab6bd;overflow-wrap:anywhere}
+  #print-team .new-slot td{border-top:1.3pt solid #61747f}
+  #print-team .hours{font-weight:bold;white-space:nowrap}
+  #print-team .conference{font-weight:600}
+  #print-team .participant{display:inline-block;border:1pt solid #7a8b95;border-radius:3pt;padding:1mm 1.5mm;margin:0 1mm 1mm 0;font-size:9pt}
+  #print-team .participant.undecided{border:1.5pt dashed #263e4c}
+  #print-team *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+
+/* Feuille imprimée : tableau partagé clair et compact */
+@media print{
+  @page{size:A4 landscape;margin:9mm}
+  #print-team{font-family:Arial,sans-serif;color:#17232a}
+  #print-team .print-day{break-before:page;margin:0}
+  #print-team .print-day:first-child{break-before:auto}
+  #print-team h2{font-size:15pt;margin:0 0 4mm;padding:2.5mm 3mm;background:#eaf0f3!important;border-left:5px solid #f2673a;border-bottom:1px solid #78909c}
+  #print-team table{font-size:9.5pt}
+  #print-team th{padding:2.3mm;background:#203640!important;color:white!important;border:0;text-transform:none;letter-spacing:0;font-size:9pt}
+  #print-team td{padding:2.4mm 2.5mm;border-bottom:.6pt solid #c1cbd0}
+  #print-team tbody tr:nth-child(even){background:#f5f7f8!important}
+  #print-team .new-slot td{border-top:1.2pt solid #607d8b}
+  #print-team .hours{font-size:10pt;color:#e0522b;vertical-align:middle}
+  #print-team .conference{font-size:10pt;font-weight:700}
+  #print-team .participant{border:1pt solid #9aa9b1;border-radius:10pt;padding:1mm 2mm;margin:0 1.2mm 1mm 0;background:#fff!important}
+  #print-team .participant.undecided{border:1.5pt dashed #e0522b}
+}
+
+.card.team-selected{border:2px solid #4b8bc4;padding:16px;background:#f5faff}.person.active.self{background:#fff0e6;color:#a43e18;border-color:var(--orange)}
+</style>
+</head>
+<body><main class="shell">
+<section class="hero"><div class="eyebrow">SIDO Lyon · 16—17 septembre 2026</div><h1>Compose ton planning.</h1><p>Sélectionne les conférences que tu veux voir et repère instantanément les créneaux qui se chevauchent.</p><div class="meta"><span>📍 Centre de Congrès de Lyon</span><span>🎤 Programme officiel</span><span>🗓️ 2 jours</span></div></section>
+<div class="layout"><section>
+<div class="toolbar"><div class="search"><input id="search" placeholder="Rechercher une conférence, un intervenant, une salle…"><button class="btn ghost" id="clear">Effacer</button></div><label style="display:block;margin-top:10px;font-size:13px;font-weight:750">Je suis : <select id="identity" style="border:1px solid var(--line);border-radius:9px;padding:7px;margin-left:4px"><option value="">Choisir mon nom</option><option>Prune</option><option>Kad</option><option>Loïc</option><option>Guillaume</option><option>Matthieu</option></select></label><div class="filters" id="filters"></div></div>
+<div class="stats"><span id="count">Chargement du programme…</span><span id="conflicts"></span></div><div id="schedule"><div class="loading">Récupération du programme officiel…</div></div>
+</section><aside class="planning"><h2>Planning d’équipe <span id="selectedCount">0</span></h2><div class="sub">Planning partagé de toute l’équipe.</div><div id="plan" class="planlist"><div class="empty">Aucune conférence sélectionnée.<br>Utilise « Ajouter » sur une carte.</div></div><div class="actions"><button class="btn primary" id="export">Exporter .ics</button><button class="btn" id="print">Imprimer</button></div></aside></div>
+<p style="text-align:center;color:var(--muted);font-size:12px;padding:22px">Source : <a href="https://www.sido-lyon.com/fr/programme/conferences" target="_blank">programme officiel SIDO Lyon</a></p>
+</main>
+<script>
+const API='/api/program',EVENT='69aaf6cb5d90ce3fcd4aac97',PROGRAM='69f06d4c57488afec49ab26a';
+const QUERY=`query Program($eventId: ID!, $id: ID!, $search: String, $filterArgs: JSON, $cursor: String){publicViewer(eventId:$eventId){program(id:$id){sessions(search:$search,filterArgs:$filterArgs,after:$cursor){edges{node{id displayName startDate endDate location format sessionType{id name color} thematics{name color} speakers{id name companyName}}}pageInfo{endCursor hasNextPage}}}}}`;
+const PEOPLE=['Prune','Kad','Loïc','Guillaume','Matthieu'];
+let assignments={};
+let sessions=[],selected=new Set(),day='all',theme='all',q='';const $=s=>document.querySelector(s),esc=s=>String(s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])),time=d=>new Intl.DateTimeFormat('fr-FR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Europe/Paris'}).format(new Date(d)),key=d=>new Date(d).toISOString().slice(0,10),label=d=>new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',timeZone:'Europe/Paris'}).format(new Date(d)).replace(/^./,x=>x.toUpperCase());
+function clash(a,b){return !!a&&!!b&&new Date(a.startDate)<new Date(b.endDate)&&new Date(b.startDate)<new Date(a.endDate)}
+function bad(){return new Set(sessions.filter(s=>(assignments[s.id]||[]).some(p=>personConflict(s,p))).map(s=>s.id))}
+function filters(){let days=[...new Set(sessions.map(s=>key(s.startDate)))],themes=[...new Set(sessions.flatMap(s=>(s.thematics||[]).map(t=>t.name)))].sort();$('#filters').innerHTML=`<button class="chip ${day==='all'?'active':''}" data-day="all">Tous les jours</button>${days.map(d=>`<button class="chip ${day===d?'active':''}" data-day="${d}">${label(d)}</button>`).join('')}<span style="flex-basis:100%;height:0"></span><button class="chip ${theme==='all'?'active':''}" data-theme="all">Toutes les thématiques</button>${themes.map(t=>`<button class="chip ${theme===t?'active':''}" data-theme="${esc(t)}">${esc(t)}</button>`).join('')}`;document.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{day=b.dataset.day;render()});document.querySelectorAll('[data-theme]').forEach(b=>b.onclick=()=>{theme=b.dataset.theme;render()})}
+function list(){return sessions.filter(s=>(day==='all'||key(s.startDate)===day)&&(theme==='all'||(s.thematics||[]).some(t=>t.name===theme))&&(!q||[s.displayName,s.location,s.sessionType?.name,...(s.speakers||[]).map(x=>x.name),...(s.thematics||[]).map(x=>x.name)].join(' ').toLowerCase().includes(q.toLowerCase()))).sort((a,b)=>new Date(a.startDate)-new Date(b.startDate))}
+async function load(){let cursor=null;try{do{let r=await fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({query:QUERY,variables:{eventId:EVENT,id:PROGRAM,filterArgs:{},cursor}})}),j=await r.json();if(j.errors)throw Error(j.errors[0].message);let p=j.data.publicViewer.program.sessions;sessions.push(...p.edges.map(x=>x.node));cursor=p.pageInfo.hasNextPage?p.pageInfo.endCursor:null}while(cursor);render()}catch(e){$('#schedule').innerHTML=`<div class="error"><strong>Impossible de charger le programme.</strong><br>${esc(e.message)}<br><br><a href="https://www.sido-lyon.com/fr/programme/conferences" target="_blank">Ouvrir le programme officiel</a></div>`}}
+function exportIcs(){let a=[...selected].map(id=>sessions.find(s=>s.id===id)).filter(Boolean);if(!a.length)return;let clean=x=>String(x||'').replace(/[\\,;]/g,' '),z=x=>new Date(x).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');let l=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//SIDO Lyon//Planning//FR','CALSCALE:GREGORIAN'];a.forEach(s=>l.push('BEGIN:VEVENT',`UID:${s.id}@sido-lyon.com`,`DTSTART:${z(s.startDate)}`,`DTEND:${z(s.endDate)}`,`SUMMARY:${clean(s.displayName)}`,`LOCATION:${clean(s.location)}`,'END:VEVENT'));l.push('END:VCALENDAR');let x=document.createElement('a');x.href=URL.createObjectURL(new Blob([l.join('\r\n')],{type:'text/calendar'}));x.download='mon-planning-sido-lyon-2026.ics';x.click()}
+$('#search').oninput=e=>{q=e.target.value;render()};$('#clear').onclick=()=>{$('#search').value='';q='';render()};$('#export').onclick=exportIcs;$('#print').onclick=printTeam;load();
+function card(s,b){let is=selected.has(s.id),people=(s.speakers||[]).slice(0,3).map(x=>x.name).join(' · '),mine=assignments[s.id]||[];return `<article class="card ${mine.includes(me)?'selected':mine.length?'team-selected':''} ${b.has(s.id)?'conflict':''}"><div class="badges"><span class="badge type">${esc(s.sessionType?.name||'Session')}</span>${(s.thematics||[]).slice(0,2).map(t=>`<span class="badge">${esc(t.name)}</span>`).join('')}</div><h3>${esc(s.displayName)}</h3><p>${esc(people||'Intervenants à préciser')}</p><span class="room">⌖ ${esc(s.location||'Lieu à préciser')}</span><div class="picker">${PEOPLE.map(p=>`<button class="person ${mine.includes(p)?(p===me?'active self':'active'):''}" data-person="${esc(p)}" data-session="${s.id}">${mine.includes(p)?'✓ ':''}${p}</button>`).join('')}</div><div class="cardactions"><span style="font-size:12px;color:var(--muted)">${time(s.startDate)}—${time(s.endDate)}</span><button class="add" data-add="${s.id}">${mine.includes(me)?'✓ Retirer mon choix':'＋ Ajouter mon choix'}</button></div></article>`}
+function render(){filters();let arr=list(),b=bad(),groups={};arr.forEach(s=>(groups[key(s.startDate)]??=[]).push(s));$('#count').textContent=`${arr.length} conférence${arr.length>1?'s':''} affichée${arr.length>1?'s':''}`;$('#conflicts').textContent=b.size?`⚠️ ${b.size} choix en conflit`:'';$('#schedule').innerHTML=Object.keys(groups).length?Object.entries(groups).map(([d,a])=>{let slots={};a.forEach(s=>(slots[time(s.startDate)]??=[]).push(s));return `<section class="day"><div class="dayhead"><h2>${label(d)}</h2><small>${a.length} sessions</small></div>${Object.entries(slots).map(([t,x])=>`<div class="slot"><div class="time">${t}</div><div class="cards">${x.map(s=>card(s,b)).join('')}</div></div>`).join('')}</section>`}).join(''):'<div class="loading">Aucun résultat avec ces filtres.</div>';document.querySelectorAll('[data-add]').forEach(x=>x.onclick=()=>{if(!me){identityDialog.showModal();return}let id=x.dataset.add;assignments[id]??=[];if(assignments[id].includes(me)){assignments[id]=assignments[id].filter(p=>p!==me);if(!assignments[id].length)delete assignments[id]}else assignments[id].push(me);save();render()});document.querySelectorAll('[data-person]').forEach(x=>x.onclick=()=>{let id=x.dataset.session,p=x.dataset.person;assignments[id]??=[];assignments[id].includes(p)?assignments[id]=assignments[id].filter(v=>v!==p):assignments[id].push(p);if(!assignments[id].length)delete assignments[id];save();render()});plan()}
+
+async function syncShared(){try{let next=await (await fetch('/api/assignments')).json();assignments=next;selected=new Set(Object.keys(assignments));render()}catch(e){}}
+function save(){selected=new Set(Object.keys(assignments));fetch('/api/assignments',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(assignments)}).catch(()=>{});plan()}
+setInterval(syncShared,3000);syncShared();
+let me='';document.getElementById('identity').onchange=e=>{me=e.target.value};
+function personConflict(s,p){return [...selected].some(id=>id!==s.id&&assignments[id]?.includes(p)&&clash(s,sessions.find(x=>x.id===id)))}
+function plan(){let a=[...selected].map(id=>sessions.find(s=>s.id===id)).filter(Boolean).sort((a,b)=>new Date(a.startDate)-new Date(b.startDate));$('#selectedCount').textContent=a.length;$('#plan').innerHTML=a.length?a.map(s=>{let names=(assignments[s.id]||[]).map(p=>'<span style="'+(personConflict(s,p)?'border-bottom:2px dotted #ff8861':'')+'">'+esc(p)+'</span>').join(', ')||'À attribuer';return '<div class="planitem"><button class="remove" data-remove="'+s.id+'">×</button><strong>'+esc(s.displayName)+'</strong><small>'+label(s.startDate)+' · '+time(s.startDate)+'—'+time(s.endDate)+'<br>'+esc(s.location)+'<br>👥 '+names+'</small></div>'}).join(''):'<div class="empty">Aucune conférence sélectionnée.<br>Utilise « Ajouter » sur une carte.</div>';document.querySelectorAll('[data-remove]').forEach(x=>x.onclick=()=>{delete assignments[x.dataset.remove];save();render()})}
+
+const identityDialog=document.createElement('dialog');
+identityDialog.className='identity-dialog';
+identityDialog.setAttribute('aria-labelledby','identity-title');
+identityDialog.innerHTML='<h2 id="identity-title">Qui es-tu ?</h2><p>Choisis ton prénom pour sélectionner tes conférences.</p><div class="identity-names">'+PEOPLE.map(p=>'<button type="button" class="btn" data-name="'+p+'">'+p+'</button>').join('')+'</div>';
+document.body.append(identityDialog);
+const identityLabel=document.getElementById('identity').closest('label');
+identityLabel.style.display='none';
+const changeIdentity=document.createElement('button');
+changeIdentity.type='button';
+changeIdentity.className='btn identity-change';
+changeIdentity.textContent='Choisir mon prénom';
+identityLabel.after(changeIdentity);
+changeIdentity.onclick=()=>identityDialog.showModal();
+identityDialog.addEventListener('cancel',e=>{if(!me)e.preventDefault()});
+identityDialog.querySelectorAll('[data-name]').forEach(button=>{
+  button.onclick=()=>{
+    me=button.dataset.name;
+    document.getElementById('identity').value=me;
+    changeIdentity.textContent=me+' · Changer de personne';
+    identityDialog.close();
+    render();
+    changeIdentity.focus();
+  };
+});
+identityDialog.showModal();
+
+
+let printPerson=null;
+const individualPrint=document.createElement('button');
+individualPrint.type='button';
+individualPrint.className='btn';
+individualPrint.textContent='Imprimer mon planning';
+document.getElementById('print').textContent='Imprimer toute l’équipe';
+document.getElementById('print').onclick=()=>printTeam(null);
+document.getElementById('print').after(individualPrint);
+individualPrint.onclick=()=>{if(!me){identityDialog.showModal();return}printTeam(me)};
+function buildPrintTeam(){
+  let target=document.getElementById('print-team');
+  if(!target){target=document.createElement('section');target.id='print-team';document.body.append(target)}
+  const chosen=sessions.filter(s=>Object.hasOwn(assignments,s.id)&&(!printPerson||assignments[s.id].includes(printPerson))).sort((a,b)=>a.startDate.localeCompare(b.startDate)||(a.location||'').localeCompare(b.location||''));
+  const days={};
+  chosen.forEach(s=>(days[key(s.startDate)]??=[]).push(s));
+  target.innerHTML=(chosen.length?Object.entries(days).map(([date,items])=>{
+      let previous='';
+      const rows=items.map(s=>{
+        const start=s.startDate; const newSlot=previous&&previous!==start;previous=start;
+        const names=(assignments[s.id]||[]).map(p=>'<span class="participant '+(personConflict(s,p)?'undecided':'')+'">'+esc(p)+'</span>').join('')||'À attribuer';
+        return '<tr class="'+(newSlot?'new-slot':'')+'"><td class="hours">'+time(s.startDate)+'–'+time(s.endDate)+'</td><td>'+esc(s.location||'Salle à préciser')+'</td><td class="conference">'+esc(s.displayName)+'</td><td>'+names+'</td></tr>';
+      }).join('');
+      return '<section class="print-day"><h2>'+label(date)+'</h2><table><colgroup><col style="width:12%"><col style="width:17%"><col style="width:43%"><col style="width:28%"></colgroup><thead><tr><th>Horaire</th><th>Salle</th><th>Conférence</th><th>Participants</th></tr></thead><tbody>'+rows+'</tbody></table></section>';
+    }).join(''):'<p>Aucune conférence sélectionnée.</p>');
+}
+async function printTeam(person=null){
+  try{
+    const response=await fetch('/api/assignments',{cache:'no-store'});
+    if(!response.ok)throw Error('Synchronisation impossible');
+    assignments=await response.json();selected=new Set(Object.keys(assignments));
+    printPerson=person;
+    buildPrintTeam();window.print();
+  }catch(e){alert('Impossible de récupérer le planning partagé pour l’impression. Réessaie dans un instant.')}
+}
+window.addEventListener('beforeprint',buildPrintTeam);
+window.addEventListener('afterprint',()=>{printPerson=null});
+</script></body></html>
