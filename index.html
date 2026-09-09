@@ -174,4 +174,4 @@ async function printTeam(person=null){
 }
 window.addEventListener('beforeprint',buildPrintTeam);
 window.addEventListener('afterprint',()=>{printPerson=null});
-</script><script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js'));</script></body></html>
+</script><script>if('serviceWorker' in navigator){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!window.__pwaReloaded){window.__pwaReloaded=true;location.reload()}});window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js?v=3').then(reg=>reg.update()))}</script></body></html>
