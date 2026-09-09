@@ -95,7 +95,7 @@ function render(){filters();let arr=list(),b=bad(),groups={};arr.forEach(s=>(gro
 async function syncShared(){try{let next=await (await fetch('/api/assignments')).json();assignments=next;selected=new Set(Object.keys(assignments));render()}catch(e){}}
 function save(){selected=new Set(Object.keys(assignments));fetch('/api/assignments',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(assignments)}).catch(()=>{});plan()}
 setInterval(syncShared,3000);syncShared();
-let me='';document.getElementById('identity').onchange=e=>{me=e.target.value};
+const IDENTITY_KEY='sido-planning-person';let me=localStorage.getItem(IDENTITY_KEY)||'';document.getElementById('identity').value=me;document.getElementById('identity').onchange=e=>{me=e.target.value;localStorage.setItem(IDENTITY_KEY,me)};
 function personConflict(s,p){return [...selected].some(id=>id!==s.id&&assignments[id]?.includes(p)&&clash(s,sessions.find(x=>x.id===id)))}
 function plan(){let a=[...selected].map(id=>sessions.find(s=>s.id===id)).filter(Boolean).sort((a,b)=>new Date(a.startDate)-new Date(b.startDate));$('#selectedCount').textContent=a.length;$('#plan').innerHTML=a.length?a.map(s=>{let names=(assignments[s.id]||[]).map(p=>'<span style="'+(personConflict(s,p)?'border-bottom:2px dotted #ff8861':'')+'">'+esc(p)+'</span>').join(', ')||'À attribuer';return '<div class="planitem"><button class="remove" data-remove="'+s.id+'">×</button><strong>'+esc(s.displayName)+'</strong><small>'+label(s.startDate)+' · '+time(s.startDate)+'—'+time(s.endDate)+'<br>'+esc(s.location)+'<br>👥 '+names+'</small></div>'}).join(''):'<div class="empty">Aucune conférence sélectionnée.<br>Utilise « Ajouter » sur une carte.</div>';document.querySelectorAll('[data-remove]').forEach(x=>x.onclick=()=>{delete assignments[x.dataset.remove];save();render()})}
 
@@ -116,6 +116,7 @@ identityDialog.addEventListener('cancel',e=>{if(!me)e.preventDefault()});
 identityDialog.querySelectorAll('[data-name]').forEach(button=>{
   button.onclick=()=>{
     me=button.dataset.name;
+    localStorage.setItem(IDENTITY_KEY,me);
     document.getElementById('identity').value=me;
     changeIdentity.textContent=me+' · Changer de personne';
     identityDialog.close();
@@ -123,7 +124,8 @@ identityDialog.querySelectorAll('[data-name]').forEach(button=>{
     changeIdentity.focus();
   };
 });
-identityDialog.showModal();
+if(me)changeIdentity.textContent=me+' · Changer de personne';
+if(!me)identityDialog.showModal();
 
 
 let printPerson=null;
