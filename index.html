@@ -72,7 +72,7 @@
 <section class="hero"><div class="eyebrow">SIDO Lyon · 16—17 septembre 2026</div><h1>Compose ton planning.</h1><p>Sélectionne les conférences que tu veux voir et repère instantanément les créneaux qui se chevauchent.</p><div class="meta"><span>📍 Centre de Congrès de Lyon</span><span>🎤 Programme officiel</span><span>🗓️ 2 jours</span></div></section>
 <a class="btn primary" href="planning.html" style="display:inline-block;margin-bottom:12px">Voir le planning construit →</a><div class="layout"><section>
 <div class="toolbar"><div class="search"><input id="search" placeholder="Rechercher une conférence, un intervenant, une salle…"><button class="btn ghost" id="clear">Effacer</button></div><label style="display:block;margin-top:10px;font-size:13px;font-weight:750">Je suis : <select id="identity" style="border:1px solid var(--line);border-radius:9px;padding:7px;margin-left:4px"><option value="">Choisir mon nom</option><option>Prune</option><option>Kad</option><option>Loïc</option><option>Guillaume</option><option>Matthieu</option></select></label><div class="filters" id="filters"></div></div>
-<div class="stats"><span id="count">Chargement du programme…</span><span id="conflicts"></span></div><div id="team-view"><div class="team-empty">Le planning d’équipe se construira ici après les premières sélections.</div></div><div id="schedule"><div class="loading">Récupération du programme officiel…</div></div>
+<div class="stats"><span id="count">Chargement du programme…</span><span id="conflicts"></span></div><div id="schedule"><div class="loading">Récupération du programme officiel…</div></div>
 </section><aside class="planning"><h2>Planning d’équipe <span id="selectedCount">0</span></h2><div class="sub">Planning partagé de toute l’équipe.</div><div id="plan" class="planlist"><div class="empty">Aucune conférence sélectionnée.<br>Utilise « Ajouter » sur une carte.</div></div><div class="actions"><button class="btn primary" id="export">Exporter .ics</button><button class="btn" id="print">Imprimer</button></div></aside></div>
 <p style="text-align:center;color:var(--muted);font-size:12px;padding:22px">Source : <a href="https://www.sido-lyon.com/fr/programme/conferences" target="_blank">programme officiel SIDO Lyon</a></p>
 </main>
@@ -162,20 +162,4 @@ async function printTeam(person=null){
 }
 window.addEventListener('beforeprint',buildPrintTeam);
 window.addEventListener('afterprint',()=>{printPerson=null});
-function renderTeamView(){
- const target=document.getElementById('team-view');if(!target)return;
- const chosen=sessions.filter(s=>Object.hasOwn(assignments,s.id)).sort((a,b)=>a.startDate.localeCompare(b.startDate));
- if(!chosen.length){target.innerHTML='<div class="team-empty">Le planning d’équipe se construira ici après les premières sélections.</div>';return}
- const days={};chosen.forEach(s=>(days[key(s.startDate)]??=[]).push(s));
- target.innerHTML='<div class="team-view-title"><h2>Planning construit</h2><small>Une colonne par personne · les choix simultanés restent visibles</small></div>'+
- Object.entries(days).map(function(entry){const date=entry[0],items=entry[1],slots=[...new Set(items.map(s=>s.startDate))].sort();
-   const heads='<div class="head">Heure</div>'+PEOPLE.map(p=>'<div class="head">'+p+'</div>').join('')+'<div class="head">À attribuer</div>';
-   const rows=slots.map(function(start){const cells=PEOPLE.map(function(p){const cards=items.filter(s=>(assignments[s.id]||[]).includes(p)&&s.startDate===start).map(function(s){return '<div class="agenda-card '+(p===me?'mine':'')+' '+(personConflict(s,p)?'dotted':'')+'"><strong>'+esc(s.displayName)+'</strong><small>'+esc(s.location||'Salle à préciser')+' · '+time(s.startDate)+'–'+time(s.endDate)+'</small></div>'}).join('');return '<div class="team-cell">'+cards+'</div>'}).join('');
-     const un=items.filter(s=>(assignments[s.id]||[]).length===0&&s.startDate===start).map(s=>'<div class="agenda-card"><strong>'+esc(s.displayName)+'</strong><small>'+esc(s.location||'Salle à préciser')+'</small></div>').join('');
-     return '<div class="clock">'+time(start)+'</div>'+cells+'<div class="team-cell">'+un+'</div>';
-   }).join('');
-   return '<section class="team-day"><h3>'+label(date)+'</h3><div class="team-grid">'+heads+rows+'</div></section>';
- }).join('');
-}
-const oldPlan=plan;plan=function(){oldPlan();renderTeamView()};
 </script></body></html>
