@@ -1,0 +1,28 @@
+.phone-header{display:none}
+@media screen and (max-width:900px){
+body{padding-bottom:calc(90px + env(safe-area-inset-bottom));background:#f4f6f8}
+.shell{padding:14px;max-width:100%;overflow-wrap:anywhere}
+.shell>.btn,.hero,.mobile-app-title,.shell>p,.planning{display:none!important}
+.phone-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
+.phone-header a{display:flex;align-items:center;gap:8px;text-decoration:none;color:#18262d;font-weight:800}
+.phone-header img{width:36px;height:36px}.phone-header .identity-change{margin:0;font-size:13px;max-width:55%}
+.layout{display:block!important;margin:0}.layout>section{min-width:0;width:100%}
+.toolbar{position:static;padding:12px;box-shadow:none;border:1px solid #dce4e4}
+.search input{font-size:16px;min-width:0}.filters{display:flex;flex-wrap:wrap;max-height:160px;overflow:auto}
+button,.btn,.person,.chip{min-height:44px;touch-action:manipulation}.picker{flex-wrap:wrap}.person{font-size:13px;padding:8px 12px}
+.dayhead h2{font-size:20px}.dayhead small{display:none}.slot{display:block}.time{padding:6px 0;font-size:16px}
+.cards{display:block}.card{margin-bottom:12px}.card h3{font-size:17px;line-height:1.4}.cardactions{flex-wrap:wrap}.cardactions .add{width:100%;min-height:46px}
+.bottom-nav{position:fixed;inset:auto 0 0;z-index:10;display:flex;margin:0;padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:white;border-top:1px solid #dce4e4;gap:8px}
+.bottom-nav a{flex:1;min-height:48px;padding:12px 4px;text-align:center;font-size:13px;border-radius:12px}
+.personal-quick{padding:0;border:0;background:none}.personal-quick h2{font-size:24px;margin:0 0 16px}
+.personal-quick-item{padding:16px;background:white;border-left:4px solid #f2673a;border-radius:12px}
+.personal-quick-item strong{font-size:16px;line-height:1.4}.personal-quick-item small{display:block;font-size:14px;margin:8px 0}
+.personal-quick-item .btn{display:inline-flex;align-items:center;text-decoration:none;margin-top:8px}
+.team-grid{display:none!important}.mobile-team-list{display:grid!important;gap:10px;padding:12px}
+.mobile-slot>strong{font-size:17px}.mobile-agenda-card{padding:12px;background:#f1f6fa;margin-top:8px;border-radius:10px}
+.mobile-agenda-card strong,.mobile-agenda-card small{display:block}.mobile-agenda-card small{margin-top:8px}
+.team-day{overflow:visible}.team-view-title small{display:none}
+body[data-mobile-view="personal"] #team-view{display:none!important}body[data-mobile-view="team"] #personal-view{display:none!important}
+.identity-dialog{padding:22px;max-height:85dvh}.identity-names{grid-template-columns:1fr 1fr}.identity-names .btn{font-size:16px!important}
+}
+@media print{.phone-header,.bottom-nav{display:none!important}}

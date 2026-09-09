@@ -68,15 +68,9 @@
 .card.team-selected{border:2px solid #4b8bc4;padding:16px;background:#f5faff}.person.active.self{background:#fff0e6;color:#a43e18;border-color:var(--orange)}
 </style>
 <style>.team-view{display:none!important}</style>
-<style>
-.brand{display:flex;align-items:center;gap:10px;margin-bottom:20px;position:relative;z-index:1}.brand img{width:46px;height:46px;border-radius:12px}.brand strong{font-size:15px;letter-spacing:.12em}.brand small{display:block;color:#ffb39b;font-size:11px;letter-spacing:.08em}
-@media(max-width:560px){body{padding-bottom:76px}.shell{padding:0 12px 16px}.hero{margin:0 -12px;border-radius:0 0 22px 22px;padding:18px 17px 22px}.brand{margin-bottom:16px}.brand img{width:40px;height:40px}.hero h1{font-size:34px;line-height:.98;margin:10px 0}.hero p{font-size:14px;line-height:1.35;margin:10px 0}.meta{flex-wrap:nowrap;overflow:auto;gap:6px;margin-top:14px}.meta span{font-size:11px;white-space:nowrap;padding:7px 9px}.layout{display:flex;flex-direction:column;margin-top:12px;gap:14px}.planning{order:-1;border-radius:16px;padding:14px}.planning h2{font-size:19px}.planning .sub{margin-bottom:10px}.planlist{display:flex;overflow-x:auto;gap:8px;padding-bottom:2px}.planitem{min-width:245px}.actions{margin-top:10px}.toolbar{position:sticky;top:0;margin:0 -1px;padding:9px;border-radius:0 0 14px 14px}.search input{font-size:16px;min-width:0}.search .btn{padding:8px 10px}.filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.chip{white-space:nowrap}.stats{margin:11px 2px;font-size:12px}.day{margin:18px 0}.dayhead h2{font-size:20px}.slot{display:block;padding-top:12px}.time{font-size:13px;padding:0 0 6px}.cards{display:block}.card{border-radius:13px;padding:14px;margin-bottom:9px}.card.selected{padding:13px}.card h3{font-size:15px}.cardactions{margin-top:12px}.add{min-height:44px;padding:10px 14px}.bottom-nav a{min-height:44px}}
-</style>
-<style>
-.brand{display:flex;align-items:center;gap:10px;margin-bottom:20px;position:relative;z-index:1}.brand img{width:46px;height:46px;border-radius:12px}.brand strong{font-size:15px;letter-spacing:.12em}.brand small{display:block;color:#ffb39b;font-size:11px;letter-spacing:.08em}
-@media(max-width:560px){body{padding-bottom:76px}.shell{padding:0 12px 16px}.hero{margin:0 -12px;border-radius:0 0 22px 22px;padding:18px 17px 22px}.brand{margin-bottom:16px}.brand img{width:40px;height:40px}.hero h1{font-size:34px;line-height:.98;margin:10px 0}.hero p{font-size:14px;line-height:1.35;margin:10px 0}.meta{flex-wrap:nowrap;overflow:auto;gap:6px;margin-top:14px}.meta span{font-size:11px;white-space:nowrap;padding:7px 9px}.layout{display:flex;flex-direction:column;margin-top:12px;gap:14px}.planning{order:-1;border-radius:16px;padding:14px}.planning h2{font-size:19px}.planning .sub{margin-bottom:10px}.planlist{display:flex;overflow-x:auto;gap:8px;padding-bottom:2px}.planitem{min-width:245px}.actions{margin-top:10px}.toolbar{position:sticky;top:0;margin:0 -1px;padding:9px;border-radius:0 0 14px 14px}.search input{font-size:16px;min-width:0}.search .btn{padding:8px 10px}.filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}.chip{white-space:nowrap}.stats{margin:11px 2px;font-size:12px}.day{margin:18px 0}.dayhead h2{font-size:20px}.slot{display:block;padding-top:12px}.time{font-size:13px;padding:0 0 6px}.cards{display:block}.card{border-radius:13px;padding:14px;margin-bottom:9px}.card.selected{padding:13px}.card h3{font-size:15px}.cardactions{margin-top:12px}.add{min-height:44px;padding:10px 14px}.bottom-nav a{min-height:44px}}
-</style>
-</head>
+
+
+<link rel="stylesheet" href="/mobile.css?v=5"></head>
 <body><main class="shell">
 <section class="hero"><div class="brand"><img src="/icons/icon.svg" alt="Logo SIDO Lyon"><div><strong>SIDO LYON</strong><small>16—17 septembre 2026</small></div></div><div class="eyebrow">Centre de Congrès de Lyon</div><h1>Compose ton planning.</h1><p>Sélectionne les conférences que tu veux voir et repère instantanément les créneaux qui se chevauchent.</p><div class="meta"><span>📍 Centre de Congrès de Lyon</span><span>🎤 Programme officiel</span><span>🗓️ 2 jours</span></div></section>
 <a class="btn primary" href="planning.html" style="display:inline-block;margin-bottom:12px">Voir le planning construit →</a><div class="layout"><section>
@@ -85,7 +79,7 @@
 </section><aside class="planning"><h2>Planning d’équipe <span id="selectedCount">0</span></h2><div class="sub">Planning partagé de toute l’équipe.</div><div id="plan" class="planlist"><div class="empty">Aucune conférence sélectionnée.<br>Utilise « Ajouter » sur une carte.</div></div><div class="actions"><button class="btn primary" id="export">Exporter .ics</button><button class="btn" id="print">Imprimer</button></div></aside></div>
 <p style="text-align:center;color:var(--muted);font-size:12px;padding:22px">Source : <a href="https://www.sido-lyon.com/fr/programme/conferences" target="_blank">programme officiel SIDO Lyon</a></p>
 </main>
-<nav class="bottom-nav" aria-label="Navigation principale"><a class="active" href="#schedule">Conférences</a><a href="#plan">Mon planning</a><a href="planning.html">Équipe</a></nav>
+<nav class="bottom-nav" aria-label="Navigation principale"><a class="active" href="#schedule">Conférences</a><a href="planning.html#personal-view">Mon planning</a><a href="planning.html">Équipe</a></nav>
 <script>
 const API='/api/program',EVENT='69aaf6cb5d90ce3fcd4aac97',PROGRAM='69f06d4c57488afec49ab26a';
 const QUERY=`query Program($eventId: ID!, $id: ID!, $search: String, $filterArgs: JSON, $cursor: String){publicViewer(eventId:$eventId){program(id:$id){sessions(search:$search,filterArgs:$filterArgs,after:$cursor){edges{node{id displayName startDate endDate location format sessionType{id name color} thematics{name color} speakers{id name companyName}}}pageInfo{endCursor hasNextPage}}}}}`;
@@ -174,4 +168,4 @@ async function printTeam(person=null){
 }
 window.addEventListener('beforeprint',buildPrintTeam);
 window.addEventListener('afterprint',()=>{printPerson=null});
-</script><script>if('serviceWorker' in navigator){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!window.__pwaReloaded){window.__pwaReloaded=true;location.reload()}});window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js?v=3').then(reg=>reg.update()))}</script></body></html>
+</script><script>if('serviceWorker' in navigator){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!window.__pwaReloaded){window.__pwaReloaded=true;location.reload()}});window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').then(reg=>reg.update()))}</script><script src="/mobile.js?v=5"></script></body></html>
