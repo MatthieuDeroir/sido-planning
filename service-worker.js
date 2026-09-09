@@ -1,4 +1,4 @@
-const CACHE='sido-planning-v1';
+const CACHE='sido-planning-v2';
 const APP=['/','/index.html','/planning.html','/manifest.json','/icons/icon.svg'];
 
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP)).then(()=>self.skipWaiting())));
