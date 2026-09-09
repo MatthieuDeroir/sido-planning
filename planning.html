@@ -66,11 +66,11 @@
 
 .card.team-selected{border:2px solid #4b8bc4;padding:16px;background:#f5faff}.person.active.self{background:#fff0e6;color:#a43e18;border-color:var(--orange)}
 </style>
-<style>.team-view{display:none!important}</style>
+<style>#schedule,.toolbar,.stats,.hero{display:none!important}#team-view{display:block!important}.planning{margin-top:18px}</style>
 </head>
 <body><main class="shell">
 <section class="hero"><div class="eyebrow">SIDO Lyon · 16—17 septembre 2026</div><h1>Compose ton planning.</h1><p>Sélectionne les conférences que tu veux voir et repère instantanément les créneaux qui se chevauchent.</p><div class="meta"><span>📍 Centre de Congrès de Lyon</span><span>🎤 Programme officiel</span><span>🗓️ 2 jours</span></div></section>
-<a class="btn primary" href="planning.html" style="display:inline-block;margin-bottom:12px">Voir le planning construit →</a><div class="layout"><section>
+<a class="btn ghost" href="index.html" style="display:inline-block;margin-bottom:12px">← Choisir des conférences</a><div class="layout"><section>
 <div class="toolbar"><div class="search"><input id="search" placeholder="Rechercher une conférence, un intervenant, une salle…"><button class="btn ghost" id="clear">Effacer</button></div><label style="display:block;margin-top:10px;font-size:13px;font-weight:750">Je suis : <select id="identity" style="border:1px solid var(--line);border-radius:9px;padding:7px;margin-left:4px"><option value="">Choisir mon nom</option><option>Prune</option><option>Kad</option><option>Loïc</option><option>Guillaume</option><option>Matthieu</option></select></label><div class="filters" id="filters"></div></div>
 <div class="stats"><span id="count">Chargement du programme…</span><span id="conflicts"></span></div><div id="team-view"><div class="team-empty">Le planning d’équipe se construira ici après les premières sélections.</div></div><div id="schedule"><div class="loading">Récupération du programme officiel…</div></div>
 </section><aside class="planning"><h2>Planning d’équipe <span id="selectedCount">0</span></h2><div class="sub">Planning partagé de toute l’équipe.</div><div id="plan" class="planlist"><div class="empty">Aucune conférence sélectionnée.<br>Utilise « Ajouter » sur une carte.</div></div><div class="actions"><button class="btn primary" id="export">Exporter .ics</button><button class="btn" id="print">Imprimer</button></div></aside></div>
@@ -123,7 +123,7 @@ identityDialog.querySelectorAll('[data-name]').forEach(button=>{
     changeIdentity.focus();
   };
 });
-identityDialog.showModal();
+if(!location.pathname.endsWith('planning.html'))identityDialog.showModal();
 
 
 let printPerson=null;
