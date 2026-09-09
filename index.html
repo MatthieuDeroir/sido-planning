@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#18262d"><link rel="manifest" href="/manifest.json"><link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+<style>.bottom-nav{display:flex;justify-content:center;gap:8px;margin:24px auto 0}.bottom-nav a{color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:9px 13px;background:#fff;font-size:13px;font-weight:750}.bottom-nav a.active{background:var(--ink);color:#fff}@media(max-width:560px){body{padding-bottom:70px}.bottom-nav{position:fixed;z-index:10;bottom:0;left:0;right:0;margin:0;padding:10px 8px calc(10px + env(safe-area-inset-bottom));background:#fffffff2;backdrop-filter:blur(10px);border-top:1px solid var(--line);gap:5px}.bottom-nav a{flex:1;text-align:center;padding:9px 4px;font-size:12px}}</style>
 <title>Mon planning — SIDO Lyon 2026</title>
 <style>
 .team-view-title{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 10px}.team-view-title h2{margin:0;font-size:24px}.team-view-title small{color:var(--muted)}.team-day{margin:18px 0 28px;background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:auto}.team-day h3{margin:0;padding:13px 16px;background:#edf2f3;font-size:18px}.team-grid{min-width:900px;display:grid;grid-template-columns:75px repeat(6,minmax(135px,1fr));border-top:1px solid var(--line)}.team-grid>*{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px}.team-grid .head{background:#f8faf9;font-weight:800;font-size:12px;color:#52636c}.team-grid .clock{font-weight:800;color:var(--orange);font-size:12px}.team-cell{min-height:74px;background:#fff}.agenda-card{padding:9px;border-radius:10px;border-left:4px solid #4b8bc4;background:#f4f9fd;font-size:12px;line-height:1.25;margin-bottom:5px}.agenda-card.mine{border-left-color:var(--orange);background:#fff3ec}.agenda-card.dotted{border-style:dashed}.agenda-card strong{display:block;font-size:12px}.agenda-card small{display:block;color:#52636c;margin-top:4px}@media print{#team-view{display:none}}
@@ -76,6 +77,7 @@
 </section><aside class="planning"><h2>Planning d’équipe <span id="selectedCount">0</span></h2><div class="sub">Planning partagé de toute l’équipe.</div><div id="plan" class="planlist"><div class="empty">Aucune conférence sélectionnée.<br>Utilise « Ajouter » sur une carte.</div></div><div class="actions"><button class="btn primary" id="export">Exporter .ics</button><button class="btn" id="print">Imprimer</button></div></aside></div>
 <p style="text-align:center;color:var(--muted);font-size:12px;padding:22px">Source : <a href="https://www.sido-lyon.com/fr/programme/conferences" target="_blank">programme officiel SIDO Lyon</a></p>
 </main>
+<nav class="bottom-nav" aria-label="Navigation principale"><a class="active" href="#schedule">Conférences</a><a href="#plan">Mon planning</a><a href="planning.html">Équipe</a></nav>
 <script>
 const API='/api/program',EVENT='69aaf6cb5d90ce3fcd4aac97',PROGRAM='69f06d4c57488afec49ab26a';
 const QUERY=`query Program($eventId: ID!, $id: ID!, $search: String, $filterArgs: JSON, $cursor: String){publicViewer(eventId:$eventId){program(id:$id){sessions(search:$search,filterArgs:$filterArgs,after:$cursor){edges{node{id displayName startDate endDate location format sessionType{id name color} thematics{name color} speakers{id name companyName}}}pageInfo{endCursor hasNextPage}}}}}`;
@@ -164,4 +166,4 @@ async function printTeam(person=null){
 }
 window.addEventListener('beforeprint',buildPrintTeam);
 window.addEventListener('afterprint',()=>{printPerson=null});
-</script></body></html>
+</script><script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js'));</script></body></html>
