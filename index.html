@@ -4,6 +4,8 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mon planning — SIDO Lyon 2026</title>
 <style>
+.team-view-title{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 10px}.team-view-title h2{margin:0;font-size:24px}.team-view-title small{color:var(--muted)}.team-day{margin:18px 0 28px;background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:auto}.team-day h3{margin:0;padding:13px 16px;background:#edf2f3;font-size:18px}.team-grid{min-width:900px;display:grid;grid-template-columns:75px repeat(6,minmax(135px,1fr));border-top:1px solid var(--line)}.team-grid>*{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px}.team-grid .head{background:#f8faf9;font-weight:800;font-size:12px;color:#52636c}.team-grid .clock{font-weight:800;color:var(--orange);font-size:12px}.team-cell{min-height:74px;background:#fff}.agenda-card{padding:9px;border-radius:10px;border-left:4px solid #4b8bc4;background:#f4f9fd;font-size:12px;line-height:1.25;margin-bottom:5px}.agenda-card.mine{border-left-color:var(--orange);background:#fff3ec}.agenda-card.dotted{border-style:dashed}.agenda-card strong{display:block;font-size:12px}.agenda-card small{display:block;color:#52636c;margin-top:4px}@media print{#team-view{display:none}}
+.layout{display:block}.planning{background:transparent;padding:0;position:static;color:var(--ink);box-shadow:none;margin-top:8px}.planning h2,.planning .sub,.planning .planlist{display:none}.planning .actions{display:flex;flex-wrap:wrap;margin-top:0}.planning .actions .btn:last-child{grid-column:auto}
 .hero{display:none}
 .print-title{display:none}@media print{*{box-shadow:none!important}body{background:#fff;color:#000;font:11pt/1.3 Arial,sans-serif}.shell{padding:0;max-width:none}.hero,.toolbar,.stats,#schedule,.actions>*,p[style]{display:none!important}.layout{display:block;margin:0}.planning{display:block;background:#fff;color:#000;padding:0;position:static}.planning h2{font-size:20pt;border-bottom:2px solid #000;padding-bottom:8px;margin:0}.planning h2 span{font-weight:normal}.sub{color:#000;margin:5px 0 15px}.print-title{display:block}.planlist{display:block;max-height:none;overflow:visible}.planitem{background:#fff;border:0;border-bottom:1px solid #999;border-radius:0;padding:9px 0;break-inside:avoid}.planitem strong{font-size:12pt}.planitem small{color:#000;display:block;margin-top:3px}.remove{display:none!important}.planning .actions{display:none}}
 .picker{display:flex;flex-wrap:wrap;gap:5px;margin-top:13px;padding-top:11px;border-top:1px solid var(--line)}.person{border:1px solid var(--line);border-radius:99px;background:#fff;color:var(--muted);font-size:11px;padding:5px 8px}.person.active{background:#dff4f1;color:#08737b;border-color:#82d2cc;font-weight:800}
@@ -69,7 +71,7 @@
 <section class="hero"><div class="eyebrow">SIDO Lyon · 16—17 septembre 2026</div><h1>Compose ton planning.</h1><p>Sélectionne les conférences que tu veux voir et repère instantanément les créneaux qui se chevauchent.</p><div class="meta"><span>📍 Centre de Congrès de Lyon</span><span>🎤 Programme officiel</span><span>🗓️ 2 jours</span></div></section>
 <div class="layout"><section>
 <div class="toolbar"><div class="search"><input id="search" placeholder="Rechercher une conférence, un intervenant, une salle…"><button class="btn ghost" id="clear">Effacer</button></div><label style="display:block;margin-top:10px;font-size:13px;font-weight:750">Je suis : <select id="identity" style="border:1px solid var(--line);border-radius:9px;padding:7px;margin-left:4px"><option value="">Choisir mon nom</option><option>Prune</option><option>Kad</option><option>Loïc</option><option>Guillaume</option><option>Matthieu</option></select></label><div class="filters" id="filters"></div></div>
-<div class="stats"><span id="count">Chargement du programme…</span><span id="conflicts"></span></div><div id="schedule"><div class="loading">Récupération du programme officiel…</div></div>
+<div class="stats"><span id="count">Chargement du programme…</span><span id="conflicts"></span></div><div id="team-view"><div class="team-empty">Le planning d’équipe se construira ici après les premières sélections.</div></div><div id="schedule"><div class="loading">Récupération du programme officiel…</div></div>
 </section><aside class="planning"><h2>Planning d’équipe <span id="selectedCount">0</span></h2><div class="sub">Planning partagé de toute l’équipe.</div><div id="plan" class="planlist"><div class="empty">Aucune conférence sélectionnée.<br>Utilise « Ajouter » sur une carte.</div></div><div class="actions"><button class="btn primary" id="export">Exporter .ics</button><button class="btn" id="print">Imprimer</button></div></aside></div>
 <p style="text-align:center;color:var(--muted);font-size:12px;padding:22px">Source : <a href="https://www.sido-lyon.com/fr/programme/conferences" target="_blank">programme officiel SIDO Lyon</a></p>
 </main>
@@ -159,4 +161,20 @@ async function printTeam(person=null){
 }
 window.addEventListener('beforeprint',buildPrintTeam);
 window.addEventListener('afterprint',()=>{printPerson=null});
+function renderTeamView(){
+ const target=document.getElementById('team-view');if(!target)return;
+ const chosen=sessions.filter(s=>Object.hasOwn(assignments,s.id)).sort((a,b)=>a.startDate.localeCompare(b.startDate));
+ if(!chosen.length){target.innerHTML='<div class="team-empty">Le planning d’équipe se construira ici après les premières sélections.</div>';return}
+ const days={};chosen.forEach(s=>(days[key(s.startDate)]??=[]).push(s));
+ target.innerHTML='<div class="team-view-title"><h2>Planning construit</h2><small>Une colonne par personne · les choix simultanés restent visibles</small></div>'+
+ Object.entries(days).map(function(entry){const date=entry[0],items=entry[1],slots=[...new Set(items.map(s=>s.startDate))].sort();
+   const heads='<div class="head">Heure</div>'+PEOPLE.map(p=>'<div class="head">'+p+'</div>').join('')+'<div class="head">À attribuer</div>';
+   const rows=slots.map(function(start){const cells=PEOPLE.map(function(p){const cards=items.filter(s=>(assignments[s.id]||[]).includes(p)&&s.startDate===start).map(function(s){return '<div class="agenda-card '+(p===me?'mine':'')+' '+(personConflict(s,p)?'dotted':'')+'"><strong>'+esc(s.displayName)+'</strong><small>'+esc(s.location||'Salle à préciser')+' · '+time(s.startDate)+'–'+time(s.endDate)+'</small></div>'}).join('');return '<div class="team-cell">'+cards+'</div>'}).join('');
+     const un=items.filter(s=>(assignments[s.id]||[]).length===0&&s.startDate===start).map(s=>'<div class="agenda-card"><strong>'+esc(s.displayName)+'</strong><small>'+esc(s.location||'Salle à préciser')+'</small></div>').join('');
+     return '<div class="clock">'+time(start)+'</div>'+cells+'<div class="team-cell">'+un+'</div>';
+   }).join('');
+   return '<section class="team-day"><h3>'+label(date)+'</h3><div class="team-grid">'+heads+rows+'</div></section>';
+ }).join('');
+}
+const oldPlan=plan;plan=function(){oldPlan();renderTeamView()};
 </script></body></html>
